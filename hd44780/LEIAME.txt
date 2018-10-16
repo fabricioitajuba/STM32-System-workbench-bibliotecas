@@ -56,7 +56,7 @@ Obs: Se estiver usando um display 16x4 funcionará os atributos: LCD_3nd_LINE e 
 
 Ex:
 	lcdPuts("System Workbench\nFreq MCU "); //Escreve "System Workbench na primeira linha
-											//e Freq MCU na segunda linha.
+						//e Freq MCU na segunda linha.
 											  
 
 -- lcdPutc - função de saída de um tipo de caractere separado;
