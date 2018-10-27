@@ -1,4 +1,4 @@
-Este simples programa faz a inicialização e escrita de um display 16x2 ou 16x4 que utiliza o controlador HD44780.
+Biblioteca HAL para controlar display 16x2 ou 16x4 que utiliza o controlador HD44780.
 
 Microcontrolador utilizando a placa "Blue Pill"com o STM32F103C8
 
