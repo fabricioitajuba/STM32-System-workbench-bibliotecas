@@ -1,8 +1,10 @@
+Biblioteca HAL para controle de displays OLED
+
 -- Fonte:
 http://elastic-notes.blogspot.com/p/stm32-i2c-oled-ssd.html
 https://github.com/leechwort/SSD1306_I2C
 
--- Configurações:
+-- ConfiguraÃ§Ãµes:
 
 - copiar os arquivos dentro da pasta: \u8glib\inc para dentro da pasta \inc do projeto.
 
@@ -16,7 +18,7 @@ e a linha:
 #define I2C_HANDLER hi2c3 // use your i2c handler -> para a i2c definida, ex:
 #define I2C_HANDLER hi2c1 // use your i2c handler
 
--- Observações:
+-- ObservaÃ§Ãµes:
 1 - Se estiver utilizando o modelo oled 128x64 (ou outro similar) e aparecer uma linha vertical do lado esquerdo da tela, altere a seguinte linha do arquivo "u8g_dev_ssd1306_128x64":
 
 #define WIDTH 128
@@ -24,7 +26,7 @@ para:
 #define WIDTH 129
 
 
--- Inclusões no código:
+-- InclusÃµes no cÃ³digo:
 
 /* USER CODE BEGIN Includes */
 #include "u8g_arm.h"
