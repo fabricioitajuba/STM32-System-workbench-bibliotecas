@@ -1,5 +1,5 @@
 /*
- * wtv02.c
+ * wtv020.c
  *
  *  Created on: 27 de out de 2018
  *      Author: Eng. Fabricio de Lima Ribeiro
@@ -10,12 +10,12 @@
 //Inicializa o WTV020
 void ini_wtv020(void)
 {
-   GPIO_SetBits(WTV02_PORT, WTV02_CLOCK);
-   GPIO_SetBits(WTV02_PORT, WTV02_RESET);
+   GPIO_SetBits(WTV020_PORT, WTV020_CLOCK);
+   GPIO_SetBits(WTV020_PORT, WTV020_RESET);
    Delay_ms(1);
-   GPIO_ResetBits(WTV02_PORT, WTV02_RESET);
+   GPIO_ResetBits(WTV020_PORT, WTV020_RESET);
    Delay_ms(5);
-   GPIO_SetBits(WTV02_PORT, WTV02_RESET);
+   GPIO_SetBits(WTV020_PORT, WTV020_RESET);
    Delay_ms(300);
 }
 
@@ -24,22 +24,22 @@ void enviaComando(int comando)
 {
    uint16_t i;
 
-   GPIO_ResetBits(WTV02_PORT, WTV02_CLOCK);
+   GPIO_ResetBits(WTV020_PORT, WTV020_CLOCK);
    Delay_us(1950);
    for(i=0x8000; i>0; i>>=1)
    {
-	  GPIO_ResetBits(WTV02_PORT, WTV02_CLOCK);
+	  GPIO_ResetBits(WTV020_PORT, WTV020_CLOCK);
       Delay_us(50);
       if(comando & i)
       {
-    	 GPIO_SetBits(WTV02_PORT, WTV02_DATA);
+    	 GPIO_SetBits(WTV020_PORT, WTV020_DATA);
       }
       else
       {
-    	 GPIO_ResetBits(WTV02_PORT, WTV02_DATA);
+    	 GPIO_ResetBits(WTV020_PORT, WTV020_DATA);
       }
       Delay_us(50);
-      GPIO_SetBits(WTV02_PORT, WTV02_CLOCK);
+      GPIO_SetBits(WTV020_PORT, WTV020_CLOCK);
       Delay_us(100);
    }
    Delay_us(1900);
@@ -54,5 +54,5 @@ void Play(int voiceNumber)
 //STOP
 void Stop()
 {
-   enviaComando(WTV02_STOP);
+   enviaComando(WTV020_STOP);
 }
