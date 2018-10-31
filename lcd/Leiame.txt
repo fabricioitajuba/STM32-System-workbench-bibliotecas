@@ -1,0 +1,60 @@
+## Biblioteca para controlar um display LCD no formato S.P.L (StdPeriph)
+
+-- Dependências: Biblioteca delays
+
+-- Primeiros passos:
+   - Copiar o lcd.h para dentro da pasta \inc
+   - Copiar o lcd.c para dentro da pasta \src
+   - Copiar o delays.h para dentro da pasta \inc
+   - Copiar o delays.c para dentro da pasta \src
+
+-- Forma de incluir a biblioteca:
+#include "delays.h"
+#include "lcd.h"
+
+-- No início do programa incluir:
+
+int main(void)
+{
+	SysTick_Config(SystemCoreClock / 100000);
+
+-- Pinos:
+  
+                 -------------------------------------------------------------------------
+         Display - | D7 | D6 | D5 | D4 | D3 | D2 | D1 | D0 |  E | RW | RS | Vc | VDD | GND |
+                   -------------------------------------------------------------------------
+Microcontrolador - | A3 | A2 | A1 | A0 |                   | A6 | A5 | A4 |
+                   -------------------------------------------------------------------------
+
+
+-- Principais rotinas:
+
+- lcd_init(); - Inicializa o display
+
+Obs:
+- Em alguns casos deve-se incluir um delay antes de inicializar o display:
+
+Ex:
+ 	 Delay_ms(100);
+ 	 lcd_init();
+
+- lcd_clear(); - Limpa o display
+
+- lcd_putch(char c) - Imprime um caracter na posição atual do cursor
+
+Ex: 
+	lcd_putch('F'); \\Será imprimido o caractere "F"
+
+- void lcd_puts(const char * s) - Imprime uma string
+
+Ex:
+	lcd_puts("Teste"); \\Será imprimido a string "Teste"
+
+- void lcd_gotoxy(unsigned char x, unsigned char y) - Posiciona o cursor na posição:
+       x (coluna), y (linha) indicada;
+
+Ex:
+	lcd_gotoxy(0, 1); \\Coloca o cursor na coluna 0 e linha 1
+
+Ex:
+	lcd_gotoxy(0, 3); \\Coloca o cursor na coluna 0 e linha 4 caso o display seja 16x4
