@@ -40,5 +40,8 @@ extern void lcd_init(void);
 // Write a byte to the LCD display in 4 bit mode
 extern void lcd_putch(char);
 
+//Imprime um caracter no formato Byte
+void LCD_PutHexByte(unsigned char byte);
+
 //	Set the cursor position 
 #define	lcd_cursor(x)	lcd_write(((x)&0x7F)|0x80)

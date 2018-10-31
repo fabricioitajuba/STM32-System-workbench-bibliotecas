@@ -58,3 +58,14 @@ Ex:
 
 Ex:
 	lcd_gotoxy(0, 3); \\Coloca o cursor na coluna 0 e linha 4 caso o display seja 16x4
+
+- void LCD_PutHexByte(unsigned char byte); Imprime um caracter no formato Byte
+
+Ex:
+	FRESULT res;
+ 	res = f_open(&file1, "teste.txt", FA_CREATE_ALWAYS | FA_WRITE);
+ 	LCD_PutHexByte((unsigned char)res); //Imprime o resultado no formato "byte"
+
+Ex:
+	res = 0xDD;
+	LCD_PutHexByte(led1_val); //Imprimirá "DD".

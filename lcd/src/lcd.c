@@ -241,3 +241,23 @@ void lcd_init()
  lcd_clear();	    // Clear screen
  lcd_write(0x6);  // Set entry Mode
 }
+
+// ***********************************************************************
+// Imprime um byte no LCD
+// ***********************************************************************
+void LCD_PutHexByte(unsigned char byte)
+{
+  char n = (byte >> 4) & 0x0F;
+  // Write high order digit
+  if(n < 10)
+	  lcd_putch(n + '0');
+  else
+	  lcd_putch(n - 10 + 'A');
+
+  // Write low order digit
+  n = (byte & 0x0F);
+  if(n < 10)
+	  lcd_putch(n + '0');
+  else
+	  lcd_putch(n - 10 + 'A');
+}
