@@ -1,0 +1,31 @@
+
+## Biblioteca para gerar atrasos em "mili-segundos" e "micro-segundos" no formato S.P.L (StdPeriph) 
+   utilizando o SYSTICK;
+
+-- Primeiros passos:
+   - Copiar o delays.h para dentro da pasta \inc
+   - Copiar o delays.c para dentro da pasta \src
+
+-- Forma de incluir a biblioteca:
+#include "delays.h"
+
+-- No início do programa incluir:
+
+int main(void)
+{
+	SysTick_Config(SystemCoreClock / 100000);
+
+-- Principais rotinas:
+
+- void Delay_us(const int usec) - gera um atraso em micro-segundos
+
+Ex:
+	Delay_us(100); //Atraso de 100 us
+
+- void Delay_ms(const int msec) - gera um atraso em mili-segundos
+
+Ex:
+	Delay_ms(100); //Atraso de 100 ms
+
+Ex:
+	Delay_ms(1000); //Atraso de 1 minuto
