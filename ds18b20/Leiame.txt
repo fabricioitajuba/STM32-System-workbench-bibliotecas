@@ -1,0 +1,28 @@
+## Bibliotecas para controlar o sensor de temperatura DS18B20 no formato S.P.L (StdPeriph)
+
+-- Primeiros passos:
+   - Copiar o ds18b20.h para dentro da pasta \inc
+   - Copiar o one_wire.h para dentro da pasta \inc
+   - Copiar o utils.h para dentro da pasta \inc
+
+   - Copiar o ds18b20.c para dentro da pasta \src
+   - Copiar o one_wire.c para dentro da pasta \src
+   - Copiar o utils.c para dentro da pasta \src
+
+-- Exemplo de utilização
+#include "utils.h"
+#include "ds18b20.h"
+
+simple_float temperature;
+
+int main(void) {
+	setup_delay_timer (TIM2);
+
+	// Configure DS18B20 and 1-Wire on pin B12
+	// Please remember about adding pull-up resistor :)
+	ds18b20_init(GPIOB, GPIO_Pin_12, TIM2);
+
+	temperature = ds18b20_get_temperature_simple();
+
+-- Pinos:
+  
