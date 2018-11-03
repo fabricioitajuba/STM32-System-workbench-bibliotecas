@@ -9,6 +9,7 @@
 #define DELAYS_H_
 
 void SysTick_Handler(void);
+void Delay_ini(void);
 void Delay_us(const int usec);
 void Delay_ms(const int msec);
 

@@ -4,7 +4,16 @@
  *  Created on: 27 de out de 2018
  *      Author: Eng. Fabrício de Lima Ribeiro
  */
+#include "stm32f10x.h"
 #include "delays.h"
+
+// ************************************
+//  Rotina de inicialização delay
+// ************************************
+void Delay_ini(void)
+{
+  SysTick_Config(SystemCoreClock / 100000);
+}
 
 // ************************************
 //  Rotina de delay em micro-segundos

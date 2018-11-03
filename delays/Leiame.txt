@@ -13,7 +13,7 @@
 
 int main(void)
 {
-	SysTick_Config(SystemCoreClock / 100000);
+	Delay_ini();//Esta rotina deve ser a primeira de todas
 
 -- Principais rotinas:
 
