@@ -61,12 +61,12 @@ void one_wire_init(GPIO_TypeDef *g, uint16_t p, TIM_TypeDef *t) {
 bool one_wire_reset_pulse() {
     // Pull bus down for 500 us (min. 480 us)
     GPIO_ResetBits(gpio, pin);
-    Delay_us(500);
+    delay_us(timer, 500);
     GPIO_SetBits(gpio, pin);
 
     // Wait 70 us, bus should be pulled up by resistor and then
     // pulled down by slave (15-60 us after detecting rising edge)
-    Delay_us(70);
+    delay_us(timer, 70);
     BitAction bit = GPIO_ReadInputDataBit(gpio, pin);
     if (bit == Bit_RESET) {
         GPIO_SetBits(GPIOC, GPIO_Pin_9);
@@ -78,28 +78,28 @@ bool one_wire_reset_pulse() {
     }
 
     // Wait additional 430 us until slave keeps bus down (total 500 us, min. 480 us)
-    Delay_us(430);
+    delay_us(timer, 430);
     return true;
 }
 
 void one_wire_write_1() {
     // Pull bus down for 15 us
     GPIO_ResetBits(gpio, pin);
-    Delay_us(15);
+    delay_us(timer, 15);
     GPIO_SetBits(gpio, pin);
 
     // Wait until end of timeslot (60 us) + 5 us for recovery
-    Delay_us(50);
+    delay_us(timer, 50);
 }
 
 void one_wire_write_0() {
     // Pull bus down for 60 us
     GPIO_ResetBits(gpio, pin);
-    Delay_us(60);
+    delay_us(timer, 60);
     GPIO_SetBits(gpio, pin);
 
     // Wait until end of timeslot (60 us) + 5 us for recovery
-    Delay_us(5);
+    delay_us(timer, 5);
 }
 
 void one_wire_write_bit(bool bit) {
@@ -113,18 +113,18 @@ void one_wire_write_bit(bool bit) {
 bool one_wire_read_bit() {
     // Pull bus down for 5 us
     GPIO_ResetBits(gpio, pin);
-    Delay_us(5);
+    delay_us(timer, 5);
     GPIO_SetBits(gpio, pin);
 
     // Wait 5 us and check bus state
-    Delay_us(5);
+    delay_us(timer, 5);
 
     static BitAction bit;
     bit = GPIO_ReadInputDataBit(gpio, pin);
     GPIO_WriteBit(GPIOC, GPIO_Pin_9, bit);
 
     // Wait until end of timeslot (60 us) + 5 us for recovery
-    Delay_us(55);
+    delay_us(timer, 55);
 
     if (bit == Bit_SET) {
         return true;

@@ -9,7 +9,7 @@
 #include <stm32f10x_rcc.h>
 #include <stm32f10x_tim.h>
 
-//#include "utils.h"
+#include "utils.h"
 
 typedef enum {
 	ONE_WIRE_SLAVE_PRESENT, ONE_WIRE_ERROR

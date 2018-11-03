@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 #include "one_wire.h"
-//#include "utils.h"
+#include "utils.h"
 
 // Structure in which temperature is stored
 typedef struct {

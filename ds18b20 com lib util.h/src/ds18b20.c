@@ -122,13 +122,13 @@ simple_float ds18b20_decode_temperature(void) {
 
 void ds18b20_wait_for_conversion(void) {
 	if (precission == 0) {
-		Delay_ms(timer, 95);
+		delay_ms(timer, 95);
 	} else if (precission == 1) {
-		Delay_ms(timer, 190);
+		delay_ms(timer, 190);
 	} else if (precission == 2) {
-		Delay_ms(timer, 380);
+		delay_ms(timer, 380);
 	} else if (precission == 3) {
-		Delay_ms(timer, 750);
+		delay_ms(timer, 750);
 	}
 }
 
