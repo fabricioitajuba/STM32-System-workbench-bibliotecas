@@ -216,7 +216,8 @@ void lcd_init()
 
  GPIO_ResetBits(LCD_CTL_PORT, LCD_RS | LCD_RW | LCD_EN);
 	
- Delay_us(15000);	// wait 15mSec after power applied,
+ //Delay_us(15000);	// wait 15mSec after power applied,
+ Delay_ms(100);	// wait 100mSec after power applied,
  dataVal = GPIO_ReadOutputData(LCD_DATA_PORT);
  dataVal &= 0xFFF0;
  dataVal |= init_value;
