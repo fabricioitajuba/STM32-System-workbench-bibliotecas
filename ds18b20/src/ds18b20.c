@@ -5,6 +5,32 @@ static one_wire_device *one_wire_list_of_devices;
 static uint8_t one_wire_devices_list_size = 10;
 static TIM_TypeDef *timer;
 
+void setup_delay_timer(TIM_TypeDef *timer) {
+	TIM_DeInit(timer);
+	// Enable Timer clock
+	if (timer == TIM2) {
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
+	} else if (timer == TIM3) {
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
+	} else if (timer == TIM4) {
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+	} else {
+		while (1) {
+		}
+	}
+
+	// Configure timer
+	TIM_TimeBaseInitTypeDef TIM_InitStructure;
+	TIM_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_InitStructure.TIM_Prescaler = SystemCoreClock / 1000000 - 1;
+	TIM_InitStructure.TIM_Period = 10000 - 1; // Update event every 10000 us (10 ms)
+	TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+	TIM_InitStructure.TIM_RepetitionCounter = 0;
+	TIM_TimeBaseInit(timer, &TIM_InitStructure);
+
+	TIM_Cmd(timer, ENABLE);
+}
+
 void ds18b20_init(GPIO_TypeDef *gpio, uint16_t port, TIM_TypeDef *t) {
 	timer = t;
 	one_wire_init(gpio, port, t);

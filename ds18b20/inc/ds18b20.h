@@ -22,6 +22,8 @@ typedef struct {
 	one_wire_device *devices;
 } ds18b20_devices;
 
+
+void setup_delay_timer(TIM_TypeDef *timer);
 void ds18b20_init(GPIO_TypeDef *gpio, uint16_t port, TIM_TypeDef *timer);
 void ds18b20_set_precission(uint8_t precission);
 ds18b20_devices ds18b20_get_devices(bool scan);
