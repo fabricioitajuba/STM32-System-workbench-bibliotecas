@@ -130,10 +130,10 @@ void send_comand_DFPlayer(uint8_t cmd, uint8_t para1, uint8_t para2)
 	{
 		sum += buffer[i];
 	}
-	sum = 0 - sum;
+	sum = - sum;
 
-	buffer[7] = (sum >> 4) & 0xFF;
-	buffer[8] = (sum & 0xFF);
+	buffer[7] = (sum >> 8) & 0x00FF;
+	buffer[8] = (sum & 0x00FF);
 
 #ifdef DEBUG_ON
 	USART_PutStrHex(buffer);

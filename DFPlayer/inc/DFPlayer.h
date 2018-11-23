@@ -3,8 +3,8 @@
  *
  *  Created on: 22 de nov de 2018
  *      Author: Fabricio
- *      Versão: 1.0 - Ainda não acabado e testado
- *      obs: o cálculo do checksum ainda não está correto.
+ *      Versão: 1.1 - Ainda não acabado e testado
+ *      obs:
  */
 
 #ifndef DFPLAYER_H_
