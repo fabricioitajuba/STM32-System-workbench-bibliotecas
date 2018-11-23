@@ -144,9 +144,9 @@ void send_comand_DFPlayer(uint8_t cmd, uint8_t para1, uint8_t para2)
 // ***********************************************************************
 // Envia comando play
 // ***********************************************************************
-void play(void)
+void play(uint8_t num)
 {
-	send_comand_DFPlayer(3, 0, 1);
+	send_comand_DFPlayer(3, 0, num);
 }
 
 // ***********************************************************************

@@ -19,7 +19,7 @@ void USART_PutHexByte(unsigned char byte);
 void USART_PutStrHex(char *str);
 
 void send_comand_DFPlayer(uint8_t cmd, uint8_t para1, uint8_t para2);
-void play(void);
+void play(uint8_t num);
 void pause(void);
 void volume(uint8_t vol);
 void Loop(void);
