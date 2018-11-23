@@ -122,10 +122,11 @@ void send_comand_DFPlayer(uint8_t cmd, uint8_t para1, uint8_t para2)
 	uint8_t buffer[10] = {0x7E, 0xFF, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEF};
 	uint16_t sum = 0;
 
+	//Comandos
 	buffer[3] = cmd;
 	buffer[5] = para1;
 	buffer[6] = para2;
-
+	//Checksum
 	for(i=1; i<7; i++)
 	{
 		sum += buffer[i];
@@ -135,13 +136,8 @@ void send_comand_DFPlayer(uint8_t cmd, uint8_t para1, uint8_t para2)
 	buffer[7] = (sum >> 8) & 0x00FF;
 	buffer[8] = (sum & 0x00FF);
 
-#ifdef DEBUG_ON
-	USART_PutStrHex(buffer);
-#endif
-
-#ifdef DEBUG_OFF
+	//USART_PutStrHex(buffer);
 	USART_PutStr(buffer);
-#endif
 
 }
 

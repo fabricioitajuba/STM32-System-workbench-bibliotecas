@@ -10,12 +10,6 @@
 #ifndef DFPLAYER_H_
 #define DFPLAYER_H_
 
-#define DEBUG_ON
-
-//#include <stdlib.h>
-//#include <stdbool.h>
-//#include <stdint.h>
-
 // USART routines ** specific to USART1
 void SetupUSART(void);
 void USART_PutChar(char c);
