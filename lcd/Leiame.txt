@@ -16,7 +16,6 @@
 
 int main(void)
 {
-	SysTick_Config(SystemCoreClock / 100000);
 
 -- Pinos:
   
@@ -30,13 +29,6 @@ Microcontrolador - | A3 | A2 | A1 | A0 |                   | A6 | A5 | A4 |
 -- Principais rotinas:
 
 - lcd_init(); - Inicializa o display
-
-Obs:
-- Em alguns casos deve-se incluir um delay antes de inicializar o display:
-
-Ex:
- 	 Delay_ms(100);
- 	 lcd_init();
 
 - lcd_clear(); - Limpa o display
 
