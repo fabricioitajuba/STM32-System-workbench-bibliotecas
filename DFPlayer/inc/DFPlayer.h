@@ -11,7 +11,8 @@
 #ifndef DFPLAYER_H_
 #define DFPLAYER_H_
 
-//Definições da Inicializaçãoo
+//Definições da Inicialização
+//Ex: ini_DFPlayer(INI_FLASH);
 #define INI_U_DISK 	0x01
 #define INI_TF_CARD	0x02
 #define INI_PC		0x04
@@ -19,6 +20,7 @@
 #define INI_U_DISK	0x03
 
 //Tipo de fonte da música
+//Ex: specify_playback_source(FLASH);
 #define UT 		0
 #define TF 		1
 #define AUX 	2
@@ -26,6 +28,7 @@
 #define FLASH 	4
 
 //Tipos de equalização
+//Ex: specify_eq(ROCK);
 #define NORMAL	0
 #define POP		1
 #define ROCK	2
@@ -34,6 +37,7 @@
 #define BASE	5
 
 //Modo de playback
+//Ex: specify_playback_mode(REPEAT)
 #define REPEAT			0
 #define FOLDER_REPEAT	1
 #define SINGLE_REPEAT	2
