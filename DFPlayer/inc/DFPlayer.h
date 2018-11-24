@@ -3,7 +3,8 @@
  *
  *  Created on: 22 de nov de 2018
  *      Author: Fabricio
- *      Versão: 1.1 - Ainda não acabado e testado
+ *      Versão: 1.2 - Testado e aprovado
+ *      Última atualização: 24/11/18
  *      obs:
  */
 
@@ -51,11 +52,12 @@ void ini_DFPlayer(uint8_t ini);
 void specify_playback_source(uint8_t source);
 void specify_eq(uint8_t eq);
 void specify_playback_mode(uint8_t mode);
+void specify_tracking(uint16_t num);
 void next(void);
 void previous(void);
-void play(uint8_t num_H, uint8_t num_L);
 void pause(void);
 void volume(uint8_t vol);
-void Loop(void);
+void normal_working(void);
+void play(void);
 
 #endif /* DFPLAYER_H_ */
