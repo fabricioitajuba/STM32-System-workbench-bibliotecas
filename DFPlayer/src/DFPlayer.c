@@ -78,45 +78,35 @@ void USART_PutStr(char *str)
 }
 
 // ***********************************************************************
-// USART_PutHexByte(char byte)
+//	USART_GetStr(char *buf, int len)
+//  Return length of input string
 // ***********************************************************************
-void USART_PutHexByte(unsigned char byte)
+int USART_GetStr(char *buf)
 {
-  char n = (byte >> 4) & 0x0F;
-  // Write high order digit
-  if(n < 10)
- 	USART_PutChar(n + '0');
-  else
-	USART_PutChar(n - 10 + 'A');
+	int i=0;
+	char k = 0;
 
-  // Write low order digit
-  n = (byte & 0x0F);
-  if(n < 10)
- 	USART_PutChar(n + '0');
-  else
-	USART_PutChar(n - 10 + 'A');
-}
-
-// ***********************************************************************
-// USART_PutStrHex(char *str)
-// ***********************************************************************
-void USART_PutStrHex(char *str)
-{
-	int i;
-	for(i=0; i<10; i++)
+	while(k != 0xEF)
 	{
-		USART_PutHexByte(*str);
-		str++;
-	}
-	USART_PutChar(0x0D);
-	USART_PutChar(0x0A);
-}
+		// Is a byte available from UART?
+		if(USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == SET)
+		{
+			k = USART_ReceiveData(USART1);  // get input char
+			buf[i]=k;                       // store input char
 
+			if(++i == 10)  // Buffer Full = EXIT
+				break;
+		}
+    }
+
+	buf[i]=0;
+	return i;
+}
 
 // ***********************************************************************
 // Envia comandos para o DFPlayer
 // ***********************************************************************
-void send_comand_DFPlayer(uint8_t cmd, uint8_t para1, uint8_t para2)
+void send_comand_DFPlayer(uint8_t cmd, uint8_t feedback, uint8_t para1, uint8_t para2)
 {
 	int i;
 	uint8_t buffer[10] = {0x7E, 0xFF, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEF};
@@ -124,6 +114,7 @@ void send_comand_DFPlayer(uint8_t cmd, uint8_t para1, uint8_t para2)
 
 	//Comandos
 	buffer[3] = cmd;
+	buffer[4] = feedback;
 	buffer[5] = para1;
 	buffer[6] = para2;
 	//Checksum
@@ -136,9 +127,25 @@ void send_comand_DFPlayer(uint8_t cmd, uint8_t para1, uint8_t para2)
 	buffer[7] = (sum >> 8) & 0x00FF;
 	buffer[8] = (sum & 0x00FF);
 
-	//USART_PutStrHex(buffer);
+	Delay_ms(100);
 	USART_PutStr(buffer);
 
+}
+
+// ***********************************************************************
+// Retorno de parâmetros do módulo
+// ***********************************************************************
+uint16_t query_system(uint8_t query)
+{
+	uint16_t dados = 0;
+
+	send_comand_DFPlayer(query, 0, 0, 0);
+	while(!USART_GetStr(msgBuf));
+
+	dados = msgBuf[5] << 8;
+	dados += msgBuf[6];
+
+	return dados;
 }
 
 // ***********************************************************************
@@ -146,31 +153,23 @@ void send_comand_DFPlayer(uint8_t cmd, uint8_t para1, uint8_t para2)
 // ***********************************************************************
 void ini_DFPlayer(uint8_t ini)
 {
-	send_comand_DFPlayer(0x3f, 0, ini);
+	send_comand_DFPlayer(0x3f, 0x00, 0x00, ini);
 }
 
 // ***********************************************************************
-// Especifica a fonte
+// Envia comando next
 // ***********************************************************************
-void specify_playback_source(uint8_t source)
+void next(void)
 {
-	send_comand_DFPlayer(0x09, 0x00, source);
+	send_comand_DFPlayer(0x01, 0x00, 0x00, 0x00);
 }
 
 // ***********************************************************************
-// Especifica o tipo de equalização
+// Envia comando previous
 // ***********************************************************************
-void specify_eq(uint8_t eq)
+void previous(void)
 {
-	send_comand_DFPlayer(0x07, 0x00, eq);
-}
-
-// ***********************************************************************
-// Especifica o modo de playback
-// ***********************************************************************
-void specify_playback_mode(uint8_t mode)
-{
-	send_comand_DFPlayer(0x08, 0x00, mode);
+	send_comand_DFPlayer(0x02, 0x00, 0x00, 0x00);
 }
 
 // ***********************************************************************
@@ -183,31 +182,23 @@ void specify_tracking(uint16_t num)
 	num_H = (num >> 8) & 0x00FF;
 	num_L = (num & 0x00FF);
 
-	send_comand_DFPlayer(0x03, num_H, num_L);
+	send_comand_DFPlayer(0x03, 0x00, num_H, num_L);
 }
 
 // ***********************************************************************
-// Envia comando next
+// Aumenta o volume
 // ***********************************************************************
-void next(void)
+void increase_volume(void)
 {
-	send_comand_DFPlayer(0x01, 0x00, 0x00);
+	send_comand_DFPlayer(0x04, 0x00, 0x00, 0x00);
 }
 
 // ***********************************************************************
-// Envia comando previous
+// Decrementa o volume
 // ***********************************************************************
-void previous(void)
+void decrease_volume(void)
 {
-	send_comand_DFPlayer(0x02, 0x00, 0x00);
-}
-
-// ***********************************************************************
-// Envia comando pause
-// ***********************************************************************
-void pause(void)
-{
-	send_comand_DFPlayer(0x0E, 0x00, 0x00);
+	send_comand_DFPlayer(0x05, 0x00, 0x00, 0x00);
 }
 
 // ***********************************************************************
@@ -215,7 +206,39 @@ void pause(void)
 // ***********************************************************************
 void volume(uint8_t vol)
 {
-	send_comand_DFPlayer(0x06, 0x00, vol);
+	send_comand_DFPlayer(0x06, 0x00, 0x00, vol);
+}
+
+// ***********************************************************************
+// Especifica o tipo de equalização
+// ***********************************************************************
+void specify_eq(uint8_t eq)
+{
+	send_comand_DFPlayer(0x07, 0x00, 0x00, eq);
+}
+
+// ***********************************************************************
+// Especifica o modo de playback
+// ***********************************************************************
+void specify_playback_mode(uint8_t mode)
+{
+	send_comand_DFPlayer(0x08, 0x00, 0x00, mode);
+}
+
+// ***********************************************************************
+// Especifica a fonte
+// ***********************************************************************
+void specify_playback_source(uint8_t source)
+{
+	send_comand_DFPlayer(0x09, 0x00, 0x00, source);
+}
+
+// ***********************************************************************
+// Envia comando pause
+// ***********************************************************************
+void pause(void)
+{
+	send_comand_DFPlayer(0x0E, 0x00, 0x00, 0x00);
 }
 
 // ***********************************************************************
@@ -223,13 +246,13 @@ void volume(uint8_t vol)
 // ***********************************************************************
 void normal_working(void)
 {
-	send_comand_DFPlayer(0x11, 0x00, 0x01);
+	send_comand_DFPlayer(0x11, 0x00, 0x00, 0x01);
 }
 
 // ***********************************************************************
 // Envia comando play
 // ***********************************************************************
-void play(void)
+void playback(void)
 {
-	send_comand_DFPlayer(0x0D, 0x00, 0x00);
+	send_comand_DFPlayer(0x0D, 0x00, 0x00, 0x00);
 }

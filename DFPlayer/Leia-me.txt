@@ -1,2 +1,7 @@
 Driver para o funcionamento do DFPlayer mini
+
+Testado e funciona
+
+programa exemplo na pasta: STM32-System-Workbench
+
 obs: Ainda não concluido!!!
