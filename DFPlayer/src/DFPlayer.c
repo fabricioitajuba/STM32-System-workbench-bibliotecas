@@ -78,10 +78,10 @@ void USART_PutStr(char *str)
 }
 
 // ***********************************************************************
-//	USART_GetStr(char *buf, int len)
+//	USART_GetStr(void)
 //  Return length of input string
 // ***********************************************************************
-int USART_GetStr(char *buf)
+void USART_GetStr(void)
 {
 	int i=0;
 	char k = 0;
@@ -92,15 +92,14 @@ int USART_GetStr(char *buf)
 		if(USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == SET)
 		{
 			k = USART_ReceiveData(USART1);  // get input char
-			buf[i]=k;                       // store input char
+			msgBuf[i]=k;                       // store input char
 
 			if(++i == 10)  // Buffer Full = EXIT
 				break;
 		}
     }
 
-	buf[i]=0;
-	return i;
+	msgBuf[i]=0;
 }
 
 // ***********************************************************************
@@ -127,7 +126,6 @@ void send_comand_DFPlayer(uint8_t cmd, uint8_t feedback, uint8_t para1, uint8_t 
 	buffer[7] = (sum >> 8) & 0x00FF;
 	buffer[8] = (sum & 0x00FF);
 
-	Delay_ms(100);
 	USART_PutStr(buffer);
 
 }
@@ -140,7 +138,7 @@ uint16_t query_system(uint8_t query)
 	uint16_t dados = 0;
 
 	send_comand_DFPlayer(query, 0, 0, 0);
-	while(!USART_GetStr(msgBuf));
+	USART_GetStr();
 
 	dados = msgBuf[5] << 8;
 	dados += msgBuf[6];

@@ -50,7 +50,7 @@ uint8_t msgBuf[10]; //buffer de recepção
 void SetupUSART(void);
 void USART_PutChar(char c);
 void USART_PutStr(char *str);
-int USART_GetStr(char *buf);
+void USART_GetStr(void);
 
 void send_comand_DFPlayer(uint8_t cmd, uint8_t feedback, uint8_t para1, uint8_t para2);
 uint16_t query_system(uint8_t query);
