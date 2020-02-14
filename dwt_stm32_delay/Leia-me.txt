@@ -1,0 +1,57 @@
+dwt_stm32_delay
+
+Esta biblioteca gera um delay de us (micro segundos).
+
+Biblioteca para trabalhar no modo HAL.
+
+Copiar o arquivo "dwt_stm32_delay.h" para a pasta /Inc
+
+Copiar o arquivo "dwt_stm32_delay.c" para a pasta /Src
+
+
+No programa principal "main.c" adicionar as seguintes linhas:
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "dwt_stm32_delay.h"
+/* USER CODE END Includes */
+
+...
+
+
+  /* USER CODE BEGIN 2 */
+  if(DWT_Delay_Init())
+  {
+	  Error_Handler(); /* Call Error Handler */
+  }
+  /* USER CODE END 2 */
+
+...
+
+Exemplo de uso:
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+	  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+	  DWT_Delay_us(50000);/* 50ms Delay */
+	  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+	  DWT_Delay_us(50000);
+	  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+	  DWT_Delay_us(50000);
+	  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+	  DWT_Delay_us(50000);
+	  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+	  DWT_Delay_us(50000);
+	  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+
+	  /* 3s Delay */
+	  DWT_Delay_us(2000000);
+  }
+  /* USER CODE END 3 */
+
+
