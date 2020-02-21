@@ -9,9 +9,13 @@ Exemplo de uso com o STM32F103C8:
 
 ...
 
-	MemoryMap map;
+/* USER CODE BEGIN PV */
+//Reservando área da flah interna
+MemoryMap map;
+static const uint32_t memoryMapSize = sizeof(map) / sizeof(uint32_t);
+/* USER CODE END PV */
 
-	static const uint32_t memoryMapSize = sizeof(map) / sizeof(uint32_t);
+...
 
 	map.data0 = 1;
 	map.data1 = 2;
