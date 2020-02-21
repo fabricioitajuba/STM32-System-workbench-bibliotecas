@@ -3,6 +3,7 @@
  *
  *  Created on: 20 de fev de 2020
  *      Author: fabricio
+ *      Fonte: http://www.pstadler.de/2018/04/04/storing-data-on-the-non-volatile-flash-of-a-stm32f303/
  */
 
 #ifndef MEMORY_H_
