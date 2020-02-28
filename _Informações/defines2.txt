@@ -28,3 +28,13 @@ Exemplo de uso:
 	data  = (uint16_t)GPIOD->IDR & 0x00ff; //lsb
 	data |= (uint16_t)GPIOA->IDR << 8 ; // msb
 
+
+0x4000 0000
+0x0001 0000
+0x0000 1000
+-----------
+0x4001 1000
+
+
+
+
