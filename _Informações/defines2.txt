@@ -18,3 +18,13 @@ typedef struct
 #define GPIOC_BASE            (APB2PERIPH_BASE + 0x00001000UL)
 
 #define GPIOC               ((GPIO_TypeDef *)GPIOC_BASE)
+
+
+Exemplo de uso:
+
+	GPIOC-> ODR = 0x0000; //Escreve 0000h em GPIOC
+
+	volatile uint16_t data = 0;
+	data  = (uint16_t)GPIOD->IDR & 0x00ff; //lsb
+	data |= (uint16_t)GPIOA->IDR << 8 ; // msb
+
