@@ -1,0 +1,20 @@
+
+
+typedef struct
+{
+  __IO uint32_t CRL;
+  __IO uint32_t CRH;
+  __IO uint32_t IDR;
+  __IO uint32_t ODR;
+  __IO uint32_t BSRR;
+  __IO uint32_t BRR;
+  __IO uint32_t LCKR;
+} GPIO_TypeDef;
+
+#define PERIPH_BASE           0x40000000UL /*!< Peripheral base address in the alias region */
+
+#define APB2PERIPH_BASE       (PERIPH_BASE + 0x00010000UL)
+
+#define GPIOC_BASE            (APB2PERIPH_BASE + 0x00001000UL)
+
+#define GPIOC               ((GPIO_TypeDef *)GPIOC_BASE)
