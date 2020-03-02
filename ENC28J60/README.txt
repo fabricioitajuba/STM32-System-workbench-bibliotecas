@@ -29,3 +29,6 @@ PA5 - SPI1_SCK
 PA6 - SPI1_MISO
 PA7 - SPI1_MOSI
 
+- Copiar os arquivos da pasta /Inc para dentro da pasta /Inc do projeto
+- Copiar os arquivos da pasta /Src para dentro da pasta /Src do projeto
+
