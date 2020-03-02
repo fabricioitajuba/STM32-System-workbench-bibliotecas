@@ -4,36 +4,28 @@ O arquivo "main.c" é um exemplo.
 
 Configuração dos pinos:
 
+System Core -> SYS -> Debug: Serial Wire
 PA13 - SYS_JTMS-SWDIO
 PA14 - SYS_JTMS-SWCLK
 
+System Core -> RCC -> Hight Speed Clock (HSE): Crystal/Ceramic Resonator
 PD0 - RCC_OSC_IN
 PD1 - RCC_OSC_OUT
 
-PC13 - LED
-
-PA4 - SPI1_CS
-PA5 - SPI1_SCK
-PA6 - SPI1_MISO
-PA7 - SPI1_MOSI
+PC13 - GPIPO_Output - LED
 
 Clock Configuration
 HCLK (MHz) = 72 MHz
 
-SPI1 Mode and Configuration
+Connectivity -> SPI1 
+SPI1 Mode and Configuration:
 Mode: Full-Duplex Master
-Hardware NSS Signal: Disable
 
-Parameter Settings
-Frame Format: Motorola
-Data Size: 8 Bits
-First Bit: MSB First
-
-Clock Parameters
+Parameter Settings:
 Prescaler: 64
-Clock Polarity (CPOL): Low
-Clock Phase (CPHA): 1 Edge
 
-Advanced Parameters
-CRC Calcuation: Disabled
-NSS Signal Type: Software
+PA4 - GPIPO_Output - SPI1_CS
+PA5 - SPI1_SCK
+PA6 - SPI1_MISO
+PA7 - SPI1_MOSI
+
