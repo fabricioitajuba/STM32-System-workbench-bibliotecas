@@ -8,3 +8,18 @@
 #endif
 
 //Será executado o caso 2
+
+----------------------------------------
+
+#define UIP_CONF_IPV6	0
+
+#if UIP_CONF_IPV6
+    // Será executado caso UIP_CONF_IPV6 for 1
+    BUF->len[0] = ((uip_len - UIP_IPH_LEN) >> 8);
+    BUF->len[1] = ((uip_len - UIP_IPH_LEN) & 0xff);
+#else
+    // Será executado caso UIP_CONF_IPV6 for 0
+    BUF->len[0] = uip_len >> 8;
+    BUF->len[1] = uip_len & 0xff;
+#endif
+
