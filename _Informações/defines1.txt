@@ -1,0 +1,8 @@
+#define CASO1   0
+#define CASO2	1
+
+#if CASO1
+#include "teste1.h"
+#elif CASO2
+#include "teste2.h"
+#endif
