@@ -6,3 +6,5 @@
 #elif CASO2
 #include "teste2.h"
 #endif
+
+//Será executado o caso 2
