@@ -10,7 +10,7 @@ Copiar esses arquivos para as respectivas pastas do projeto.
 
 Depois é só chamar através da sintaxe:
 
-/*USER CODE BEGIN Includes*/
+/* USER CODE BEGIN Includes */
 #include "hd44780.h"
 
 - Lista de funções da biblioteca
@@ -20,8 +20,8 @@ A biblioteca pelo seu trabalho e conveniência do usuário - tem várias funçõ
 -- lcdInit - função de inicialização da função de exibição inicial;
 
 Ex:
-  /* USER CODE BEGIN 2 */
-  lcdInit();
+/* USER CODE BEGIN 2 */
+lcdInit();
 
   
 -- lcdClrScr - função de limpar a exibição, o cursor em sua posição inicial;
