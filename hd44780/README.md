@@ -15,7 +15,7 @@ Depois é só chamar através da sintaxe:
 
 Lista de funções da biblioteca
 
-A biblioteca pelo seu trabalho e conveniência do usuário - tem várias funções. Não consideraremos funções internas, mas consideremos as funções que precisamos para exibir várias informações.
+A biblioteca pelo seu trabalho e conveniência do usuário, tem várias funções. Não consideraremos funções internas, mas consideremos as funções que precisamos para exibir várias informações.
 
 -- lcdInit - função de inicialização da função de exibição inicial;
 
@@ -55,7 +55,7 @@ Obs: Se estiver usando um display 16x4 funcionará os atributos: LCD_3nd_LINE e 
 
 Ex:
 - lcdPuts("System Workbench\nFreq MCU "); //Escreve "System Workbench na primeira linha
-						//e Freq MCU na segunda linha.
+-                                         //e Freq MCU na segunda linha.
 											  
 
 -- lcdPutc - função de saída de um tipo de caractere separado;
