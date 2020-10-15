@@ -48,7 +48,7 @@ Ex:
 - lcdGoto(LCD_1st_LINE,0); //Posiciona o cursor na primeira linha e primeira coluna
 - lcdGoto(LCD_2nd_LINE,0); //Posiciona o cursor na segunda linha e primeira coluna
 	  
-Obs: Se estiver usando um display 16x4 funcionará os atributos: LCD_3nd_LINE e LCD_4nd_LINE
+Obs: Se estiver usando um display 16x4 funcionará os atributos: LCD_3rd_LINE e LCD_4th_LINE
 
 
 -- lcdPuts - função de saída de linha de texto;
