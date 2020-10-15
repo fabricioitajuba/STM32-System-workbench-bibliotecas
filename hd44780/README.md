@@ -10,8 +10,8 @@ Copiar esses arquivos para as respectivas pastas do projeto.
 
 Depois é só chamar através da sintaxe:
 
--/* USER CODE BEGIN Includes */
--#include "hd44780.h"
+- /* USER CODE BEGIN Includes */
+- #include "hd44780.h"
 
 - Lista de funções da biblioteca
 
