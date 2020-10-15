@@ -37,6 +37,7 @@ Contact information :
 //#include "stm32f10x_rcc.h"
 //#include <avr/io.h>
 #include "stm32f1xx.h"
+#include "main.h"
 
 //-------------------------------
 /* SET LCD<->MCU CONNECTIONS */
