@@ -2,8 +2,7 @@ Biblioteca HAL para controlar display 16x2 ou 16x4 que utiliza o controlador HD4
 
 Microcontrolador utilizando a placa "Blue Pill"com o STM32F103C8
 
-Fonte:
-https://stm32withoutfear.blogspot.com/2016/10/stm32-lcd-wh16024-hd44780.html
+Fonte: https://stm32withoutfear.blogspot.com/2016/10/stm32-lcd-wh16024-hd44780.html
 
 A biblioteca utilizada é formada pelos arquivos: hd44780.c na pasta \src e os arquivos hd44780.h e lcd_cfg.h localizados na pasta \inc.
 
@@ -11,7 +10,7 @@ Copiar esses arquivos para as respectivas pastas do projeto.
 
 Depois é só chamar através da sintaxe:
 
-/* USER CODE BEGIN Includes */
+/*USER CODE BEGIN Includes*/
 #include "hd44780.h"
 
 - Lista de funções da biblioteca
