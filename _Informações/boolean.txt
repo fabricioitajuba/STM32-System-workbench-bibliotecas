@@ -1,0 +1,14 @@
+The associated standard header <stdbool.h> introduces the macros bool, true and false for Boolean tests. For example:
+
+#include <stdbool.h>
+bool foo(FILE *str)
+{
+    bool err = false;
+    ...
+    if (!fflush(str))
+    {
+        err = true;
+    }
+    ...
+    return err;
+}
